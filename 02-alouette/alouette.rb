@@ -1,9 +1,6 @@
 
 class Alouette
 
-  # Alouette#lines_for_verse will do the work of generating all those Et <part>! lines for a given verse. It should return an array of strings, without repeats.
-  # Note that verses are 0-indexed.
-  # array[0] "et la tete"
   def self.lines_for_verse(verse_num)
     lines = [
       "Et la tête!",
@@ -18,21 +15,6 @@ class Alouette
     return lines[0..verse_num].reverse
   end
 
-#   # Alouette#verse will build the requested verse. It should return a string. For example, if you were to call verse(2), it would return
-#   Je te plumerai les yeux.
-# Je te plumerai les yeux.
-# Et les yeux!
-# Et les yeux!
-# Et le bec!
-# Et le bec!
-# Et la tête!
-# Et la tête!
-# Alouette!
-# Alouette!
-# A-a-a-ah
-
-  # refrain1 = "Alouette, gentille alouette,\nAlouette, je te plumerai."
-
   def self.verse(verse_num)
     lines1 = "Je te plumerai" + self.lines_for_verse(verse_num).reverse[verse_num][2..-2] + ".\n"
     lines2 = ""
@@ -46,10 +28,18 @@ class Alouette
 
   # Alouette#sing will build the entire song, formatted as in alouette_lyrics.txt. There should be a blank line between verses and refrains. The value returned should return a string.
   def self.sing
+    refrain1 = "Alouette, gentille alouette, Alouette, je te plumerai."
+    song = refrain1
+    # + "\n"+ Alouette.verse(0) + refrain1 + Alouette.verse(1) + refrain1 + Alouette.verse(2) + refrain1 + Alouette.verse(3) + refrain1 + Alouette.verse(4) + refrain1 + Alouette.verse(5) + refrain1 + Alouette.verse(6) + refrain1 + Alouette.verse(7) + "Alouette, gentille alouette,\nAlouette, je te plumerai."
+    [0, 1, 2, 3, 4, 5, 6, 7].each do |num|
+      song << Alouette.verse(num) + "\n" + refrain1
+    end
+
+    return song
   end
 
 end
 
-puts "lines for verse: #{Alouette.lines_for_verse(2)}"
-puts "verses:\n#{Alouette.verse(2)}"
-# puts Alouette.sing
+# puts "lines for verse: #{Alouette.lines_for_verse(2)}"
+# puts "verses:\n#{Alouette.verse(7)}"
+puts Alouette.sing
