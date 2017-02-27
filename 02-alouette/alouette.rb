@@ -28,11 +28,22 @@ class Alouette
 
   # Alouette#sing will build the entire song, formatted as in alouette_lyrics.txt. There should be a blank line between verses and refrains. The value returned should return a string.
   def self.sing
-    refrain1 = "Alouette, gentille alouette, Alouette, je te plumerai."
+      #
+      #   refrain = "Alouette, gentille alouette,\nAlouette, je te plumerai."
+      #   song = ""
+      #   7.times do |i|
+      #     song << refrain + "\n\n"
+      #     song << verse(i) + "\n\n"
+      #   end
+      #   song << refrain
+      #   return song
+      # end
+
+
+    refrain1 = "Alouette, gentille alouette,\nAlouette, je te plumerai."
     song = refrain1
-    # + "\n"+ Alouette.verse(0) + refrain1 + Alouette.verse(1) + refrain1 + Alouette.verse(2) + refrain1 + Alouette.verse(3) + refrain1 + Alouette.verse(4) + refrain1 + Alouette.verse(5) + refrain1 + Alouette.verse(6) + refrain1 + Alouette.verse(7) + "Alouette, gentille alouette,\nAlouette, je te plumerai."
-    [0, 1, 2, 3, 4, 5, 6, 7].each do |num|
-      song << Alouette.verse(num) + "\n" + refrain1
+    (0..7).each do |num|
+      song += "\n\n" + Alouette.verse(num) + "\n\n" + refrain1
     end
 
     return song
